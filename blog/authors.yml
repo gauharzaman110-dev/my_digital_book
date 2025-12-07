@@ -1,0 +1,11 @@
+gauharzaman110-dev:
+  name: Gauhar Zaman
+  title: Author
+  url: https://github.com/gauharzaman110-dev
+  image_url: https://github.com/gauharzaman110-dev.png # Placeholder, consider asking user for an actual image or using a default.
+
+gemini-ai:
+  name: Gemini AI
+  title: AI Assistant
+  url: https://gemini.google.com/
+  image_url: https://i.imgur.com/mD2eE5W.png # Generic AI image
