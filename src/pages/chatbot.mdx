@@ -1,0 +1,90 @@
+---
+title: AI Chatbot Integration Guide
+---
+
+# AI Chatbot Integration Guide
+
+This guide explains how to integrate the AI chatbot component into your Docusaurus-based book.
+
+## Installation
+
+1. Place the React chatbot components in your Docusaurus `src/components` directory.
+
+2. Import the required CSS file in your component or in the main layout:
+
+```css
+@import url('./chatbot.css');
+```
+
+## Basic Integration
+
+To add the chatbot to a page, simply include the component:
+
+```jsx
+import Chatbot from '@site/src/components/Chatbot';
+
+function MyPage() {
+  return (
+    <div>
+      <h1>My Book Page</h1>
+      <p>Content of the page...</p>
+      <Chatbot initialMode="RAG" />
+    </div>
+  );
+}
+```
+
+## Advanced Integration
+
+For a persistent chatbot across multiple pages, you can add it to your Docusaurus layout:
+
+```jsx
+// In src/theme/Layout/index.js or similar
+import Chatbot from '@site/src/components/Chatbot';
+
+export default function Layout(props) {
+  return (
+    <>
+      <OriginalLayout {...props} />
+      <div style={{ position: 'fixed', bottom: '20px', right: '20px', width: '400px', height: '600px' }}>
+        <Chatbot initialMode="RAG" />
+      </div>
+    </>
+  );
+}
+```
+
+## Configuration
+
+The chatbot component accepts the following props:
+
+- `initialMode` (optional): Either "RAG" or "SELECTED_TEXT". Defaults to "RAG"
+- `apiBaseUrl` (optional): The base URL for the backend API. Defaults to the value in REACT_APP_API_BASE_URL environment variable or 'http://localhost:8000/api/v1'
+
+## Text Selection Feature
+
+The chatbot automatically detects selected text on the page. When a user selects text and clicks on the Selected-Text mode button, that text becomes the context for the conversation.
+
+## Environment Variables
+
+Set the following environment variables in your `.env` file:
+
+- `REACT_APP_API_BASE_URL`: The base URL for the backend API
+- `REACT_APP_AUTH_TOKEN`: The authentication token for API requests (optional, uses localStorage if not provided)
+
+Example `.env` file:
+```
+REACT_APP_API_BASE_URL=http://localhost:8000/api/v1
+REACT_APP_AUTH_TOKEN=your_auth_token_here
+```
+
+## Styling
+
+The chatbot component includes default styling but can be customized. To override styles, add custom CSS rules that target the following classes:
+
+- `.chatbot-container` - Main container
+- `.chat-header` - Header section
+- `.message.user` - User messages
+- `.message.bot` - Bot messages
+- `.question-input` - Input field
+- `.send-button` - Send button
